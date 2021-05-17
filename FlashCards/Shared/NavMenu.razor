@@ -1,5 +1,10 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Filled.Dashboard" IconColor="Color.Inherit">Home</MudNavLink>
-    <MudNavLink Href="counter" Icon="@Icons.Filled.LocalLibrary" IconColor="Color.Inherit">Counter</MudNavLink>
-    <MudNavLink Href="fetchdata" Icon="@Icons.Filled.People" IconColor="Color.Inherit">Fetch data</MudNavLink>
+    <MudTextField Class="px-4" @bind-Value="DeckName" Label="Deck Name" Variant="Variant.Text" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Add" AdornmentColor="Color.Primary" />
+    <MudNavLink Class="mt-8" Href="" Match="NavLinkMatch.All" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">Blazor</MudNavLink>
+    <MudNavLink Href="#" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">React</MudNavLink>
+    <MudNavLink Href="#" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">Angular</MudNavLink>
 </MudNavMenu>
+
+@code {
+    public string DeckName { get; set; } = "";
+}
