@@ -1,23 +1,36 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider Theme="CustomTheme"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Blazor Flash Cards</MudText>
+        <MudText Typo="Typo.h5">Blazor Flash Cards</MudText>
+        <MudButton Class="ml-16" Variant="Variant.Filled"
+                   StartIcon="@Icons.Filled.NoteAdd"
+                   Color="Color.Primary">
+            Add Card
+        </MudButton>
+        <MudButton Class="ml-2" Variant="Variant.Filled"
+                   StartIcon="@Icons.Filled.LocalLibrary"
+                   Color="Color.Primary">
+            Study Deck
+        </MudButton>
         <MudAppBarSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudDrawerHeader>
+            <MudText Typo="Typo.h5" Class="mt-1">All Decks</MudText>
         </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
-        @Body
+        <MudContainer Class="mt-12 px-8" MaxWidth="MaxWidth.False">
+            @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 
@@ -28,4 +41,19 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    MudTheme CustomTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Primary = "#F79630",
+            Secondary = "#D3B1C2",
+            AppbarBackground = "#603A70",
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "320px"
+        }
+    };
 }
