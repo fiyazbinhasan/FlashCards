@@ -7,6 +7,9 @@ namespace FlashCards.Store.CounterUseCase
         public override string GetName() => "Counter";
 
         protected override CounterState GetInitialState() =>
-          new CounterState(clickCount: 0);
+          new CounterState
+          {
+              ClickCount = 0
+          };
     }
 }
