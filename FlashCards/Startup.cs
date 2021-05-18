@@ -1,3 +1,4 @@
+using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,12 @@ namespace FlashCards
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddMudServices();
+            services.AddFluxor(opt =>
+            {
+                opt.ScanAssemblies(typeof(Program).Assembly);
+                opt.UseRouting();
+                opt.UseReduxDevTools();
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
