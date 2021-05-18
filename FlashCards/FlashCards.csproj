@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fluxor" Version="4.1.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
     <PackageReference Include="MudBlazor" Version="5.0.8" />
   </ItemGroup>
 

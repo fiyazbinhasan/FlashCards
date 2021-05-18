@@ -1,14 +1,10 @@
+using Fluxor;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FlashCards
 {
@@ -26,6 +22,12 @@ namespace FlashCards
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddMudServices();
+            services.AddFluxor(opt =>
+            {
+                opt.ScanAssemblies(typeof(Program).Assembly);
+                opt.UseRouting();
+                opt.UseReduxDevTools();
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
