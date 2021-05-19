@@ -9,7 +9,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5">Flash Cards</MudText>
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-            <MudButton Class="ml-16" Variant="Variant.Filled"
+            <MudButton Class="ml-12" Variant="Variant.Filled"
                        StartIcon="@Icons.Filled.NoteAdd"
                        Color="Color.Primary">
                 Add Card
@@ -22,12 +22,13 @@
         </MudHidden>
         <MudAppBarSpacer />
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-            <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Primary" />
-            <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Primary" />
+            <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" />
         </MudHidden>
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/fiyazbinhasan/FlashCards"
+           Target="_blank" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
         <MudDrawerHeader>
             <MudText Typo="Typo.h5" Class="mt-1">All Decks</MudText>
         </MudDrawerHeader>
@@ -51,9 +52,9 @@
     {
         Palette = new Palette()
         {
-            Primary = "#F79630",
-            Secondary = "#D3B1C2",
-            AppbarBackground = "#603A70",
+            Primary = "#00ADB5",
+            Secondary = "#393E46",
+            AppbarBackground = "#222831",
         },
 
         LayoutProperties = new LayoutProperties()
