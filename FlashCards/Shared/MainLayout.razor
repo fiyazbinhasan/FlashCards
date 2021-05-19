@@ -7,18 +7,24 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5">Blazor Flash Cards</MudText>
-        <MudButton Class="ml-16" Variant="Variant.Filled"
-                   StartIcon="@Icons.Filled.NoteAdd"
-                   Color="Color.Primary">
-            Add Card
-        </MudButton>
-        <MudButton Class="ml-2" Variant="Variant.Filled"
-                   StartIcon="@Icons.Filled.LocalLibrary"
-                   Color="Color.Primary">
-            Study Deck
-        </MudButton>
+        <MudText Typo="Typo.h5">Flash Cards</MudText>
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <MudButton Class="ml-16" Variant="Variant.Filled"
+                       StartIcon="@Icons.Filled.NoteAdd"
+                       Color="Color.Primary">
+                Add Card
+            </MudButton>
+            <MudButton Class="ml-2" Variant="Variant.Filled"
+                       StartIcon="@Icons.Filled.LocalLibrary"
+                       Color="Color.Primary">
+                Study Deck
+            </MudButton>
+        </MudHidden>
         <MudAppBarSpacer />
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Primary" />
+            <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Primary" />
+        </MudHidden>
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
@@ -33,7 +39,6 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
-
 @code {
     bool _drawerOpen = true;
 
