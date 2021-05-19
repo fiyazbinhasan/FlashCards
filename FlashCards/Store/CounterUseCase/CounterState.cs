@@ -1,7 +1,4 @@
 ﻿namespace FlashCards.Store.CounterUseCase
 {
-    public record CounterState
-    {
-        public int ClickCount { get; init; }
-    }
+    public record CounterState(int ClickCount);
 }
