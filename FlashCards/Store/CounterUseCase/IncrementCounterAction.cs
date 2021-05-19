@@ -1,6 +1,4 @@
 ﻿namespace FlashCards.Store.CounterUseCase
 {
-    public class IncrementCounterAction
-    {
-    }
+    public record IncrementCounterAction();
 }
