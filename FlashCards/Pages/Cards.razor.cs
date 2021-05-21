@@ -1,6 +1,7 @@
 ﻿using FlashCards.Store.CardsUseCase;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using System;
 
 namespace FlashCards.Pages
 {
@@ -14,7 +15,7 @@ namespace FlashCards.Pages
 
         private void AddCard()
         {
-            Dispatcher.Dispatch(new AddCardAction(new Card("Hello", "There")));
+            Dispatcher.Dispatch(new AddCardAction(new Card(Guid.NewGuid(), "Front", "Back", 1, DateTime.Now)));
         }
     }
 }

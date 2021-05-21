@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FlashCards.Store.CardsUseCase
 {
     public record CardsState(IEnumerable<Card> Cards);
 
-    public record Card(string Front, string Back);
+    public record Card(Guid Id, string Front, string Back, int Score, DateTime LastStudiedOn);
 }
