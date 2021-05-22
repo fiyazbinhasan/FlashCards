@@ -15,7 +15,7 @@ namespace FlashCards.Pages
 
         private void AddCard()
         {
-            Dispatcher.Dispatch(new AddCardAction(new Card(Guid.NewGuid(), "Front", "Back", 1, DateTime.Now)));
+            Dispatcher.Dispatch(new AddCardAction(new Card(Guid.NewGuid(), "Front", "Back", 1)));
         }
     }
 }
