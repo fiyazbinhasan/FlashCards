@@ -1,0 +1,13 @@
+﻿@page "/cards"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddCard">Add Card</MudButton>
+
+<MudGrid Class="mt-4">
+    @foreach (var card in CardsState.Value.Cards)
+    {
+        <MudItem xs="12" sm="6" md="3">
+            <Card Front="Front" Back="Back" />
+        </MudItem>
+    }
+</MudGrid>

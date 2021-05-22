@@ -1,0 +1,12 @@
+﻿<MudPaper Elevation="2" Class="d-flex flex-column justify-center align-center pa-3" Style="height: 100px;">
+    <MudText Typo="Typo.h4">@Front</MudText>
+    <MudText Typo="Typo.h6">@Back</MudText>
+</MudPaper>
+
+@code {
+    [Parameter]
+    public string Front { get; set; }
+
+    [Parameter]
+    public string Back { get; set; }
+}
