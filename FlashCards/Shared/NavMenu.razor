@@ -1,10 +1,9 @@
-﻿<MudNavMenu>
-    <MudTextField Class="px-4" @bind-Value="DeckName" Label="Deck Name" Variant="Variant.Text" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Add" AdornmentColor="Color.Primary" />
-    <MudNavLink Class="mt-8" Href="" Match="NavLinkMatch.All" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">Blazor</MudNavLink>
-    <MudNavLink Href="counter" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">Counter</MudNavLink>
-    <MudNavLink Href="cards" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">Cards</MudNavLink>
-</MudNavMenu>
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
 
-@code {
-    public string DeckName { get; set; } = "";
-}
+<MudNavMenu>
+    <MudTextField Class="px-4 mb-8" @bind-Value="DeckName" OnKeyUp="AddDeck" Label="Deck Name" Variant="Variant.Text" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Add" AdornmentColor="Color.Primary" />
+    @foreach (var deck in DecksState.Value.Decks)
+    {
+        <MudNavLink Href="@($"decks/{deck.Id}/cards")" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">@deck.Name</MudNavLink>
+    }
+</MudNavMenu>
