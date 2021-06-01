@@ -7,6 +7,9 @@ namespace FlashCards.Pages
 {
     public partial class Cards
     {
+        [Parameter]
+        public Guid? Id { get; set; }
+
         [Inject]
         private IState<CardsState> CardsState { get; set; }
 
