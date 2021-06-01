@@ -1,9 +1,9 @@
 ﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
 
 <MudNavMenu>
-    <MudTextField Class="px-4 mb-8" @bind-Value="DeckName" OnKeyUp="AddDeck" Label="Deck Name" Variant="Variant.Text" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Add" AdornmentColor="Color.Primary" />
+    <MudTextField Class="px-4 mb-8" @bind-Value="DeckName" OnKeyUp="AddDeck" Label="Deck Name" Variant="Variant.Text" Adornment="Adornment.End" AdornmentIcon="@Icons.Filled.Add" AdornmentColor="Color.Primary" AutoFocus="@AutoFocus" />
     @foreach (var deck in DecksState.Value.Decks)
     {
-        <MudNavLink Href="@($"decks/{deck.Id}/cards")" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">@deck.Name</MudNavLink>
+        <MudNavLink Href="@($"decks/{deck.Id}")" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">@deck.Name</MudNavLink>
     }
 </MudNavMenu>
