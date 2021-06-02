@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="CustomTheme" />
+<MudThemeProvider Theme="_customTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -48,7 +48,7 @@
         _drawerOpen = !_drawerOpen;
     }
 
-    MudTheme CustomTheme = new MudTheme()
+    MudTheme _customTheme = new MudTheme()
     {
         Palette = new Palette()
         {
