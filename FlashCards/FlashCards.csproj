@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.1.1" />
     <PackageReference Include="Fluxor" Version="4.1.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />
     <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
