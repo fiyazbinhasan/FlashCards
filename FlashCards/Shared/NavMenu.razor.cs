@@ -10,7 +10,7 @@ namespace FlashCards.Shared
 {
     public partial class NavMenu
     {
-        public string DeckName { get; set; } = "";
+        public string DeckTitle { get; set; } = "";
         private bool AutoFocus { get; set; } = false;
 
         [Inject]
@@ -23,7 +23,7 @@ namespace FlashCards.Shared
         {
             if (e.Code == "Enter" || e.Code == "NumpadEnter")
             {
-                Dispatcher.Dispatch(new AddDeckAction(new Deck(Guid.NewGuid(), DeckName)));
+                Dispatcher.Dispatch(new AddDeckAction(new Deck(Guid.NewGuid(), DeckTitle)));
             }
         }
 
