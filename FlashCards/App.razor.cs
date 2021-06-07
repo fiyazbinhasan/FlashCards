@@ -3,6 +3,7 @@ using FlashCards.Store.CardsUseCase;
 using FlashCards.Store.DecksUseCase;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FlashCards
@@ -13,6 +14,9 @@ namespace FlashCards
         private ILocalStorageService LocalStorage { get; set; }
 
         [Inject]
+        private IDispatcher Dispatcher { get; set; }
+
+        [Inject]
         private IState<CardsState> CardsState { get; set; }
 
         [Inject]
@@ -20,11 +24,13 @@ namespace FlashCards
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            var decks = await LocalStorage.GetItemAsync<Deck[]>("decks");
+            var cards = await LocalStorage.GetItemAsync<Card[]>("cards");
+
+            Dispatcher.Dispatch(new GetDecksAction(decks));
+
             DecksState.StateChanged += async (s, e) => await DecksStateChangedAsync(e);
             CardsState.StateChanged += async (s, e) => await CardsStateChangedAsync(e);
-
-            await LocalStorage.SetItemAsync("name", "Fiyaz");
-            var name = await LocalStorage.GetItemAsync<string>("name");
         }
 
         private async Task DecksStateChangedAsync(DecksState e)
