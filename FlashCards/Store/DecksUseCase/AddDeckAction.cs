@@ -1,4 +1,4 @@
 ﻿namespace FlashCards.Store.DecksUseCase
 {
-    public record AddDeckAction(Deck deck);
+    public record AddDeckAction(Deck Deck);
 }

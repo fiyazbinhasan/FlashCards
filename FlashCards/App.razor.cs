@@ -3,7 +3,6 @@ using FlashCards.Store.CardsUseCase;
 using FlashCards.Store.DecksUseCase;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FlashCards
