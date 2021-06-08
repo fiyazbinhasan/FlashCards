@@ -29,7 +29,7 @@ namespace FlashCards.Shared
 
         protected override Task OnInitializedAsync()
         {
-            if(!DecksState.Value.Decks.Any())
+            if (!DecksState.Value.Decks.Any())
                 AutoFocus = true;
 
             return base.OnInitializedAsync();

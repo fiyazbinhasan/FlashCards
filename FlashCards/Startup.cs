@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,8 @@ namespace FlashCards
                 opt.UseRouting();
                 opt.UseReduxDevTools();
             });
+
+            services.AddBlazoredLocalStorage();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
