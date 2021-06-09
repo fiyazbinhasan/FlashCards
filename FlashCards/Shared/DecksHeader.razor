@@ -1,0 +1,10 @@
+﻿@using Fluxor
+@using FlashCards.Store.DecksUseCase
+@inject IDispatcher Dispatcher
+
+<header class="d-flex justify-space-between align-center">
+    <MudText Typo="Typo.h5" Class="px-4">All Decks</MudText>
+    <MudIconButton Icon="@Icons.Material.Filled.AddBox" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium" Class="ma-2" OnClick="@((e) => Dispatcher.Dispatch(new ShowAddDeckAction()))"/>
+</header>
+
+<MudDivider/>

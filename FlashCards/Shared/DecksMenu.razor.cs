@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FlashCards.Shared
 {
-    public partial class NavMenu
+    public partial class DecksMenu
     {
-        public string DeckTitle { get; set; } = "";
+        private string DeckTitle { get; set; } = string.Empty;
         private bool AutoFocus { get; set; } = false;
 
         [Inject]
@@ -24,6 +24,8 @@ namespace FlashCards.Shared
             if (e.Code == "Enter" || e.Code == "NumpadEnter")
             {
                 Dispatcher.Dispatch(new AddDeckAction(new Deck(Guid.NewGuid(), DeckTitle)));
+                Dispatcher.Dispatch(new HideAddDeckAction());
+                DeckTitle = string.Empty;
             }
         }
 
