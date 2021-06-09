@@ -27,7 +27,7 @@
     [Parameter]
     public EventCallback OnMenuToggle { get; set; }
 
-    async Task ToggleMenu()
+    private async Task ToggleMenu()
     {
         await OnMenuToggle.InvokeAsync();
     }
