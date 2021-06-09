@@ -1,5 +1,4 @@
 ﻿using Fluxor;
-using System;
 using System.Linq;
 
 namespace FlashCards.Store.DecksUseCase
@@ -11,7 +10,7 @@ namespace FlashCards.Store.DecksUseCase
 
         [ReducerMethod]
         public static DecksState ReduceGetDecksAction(DecksState state, GetDecksAction action) => state with { Decks = action.Decks };
-        
+
         [ReducerMethod]
         public static DecksState ReduceShowAddDeckAction(DecksState state, ShowAddDeckAction action) => state with { AddingDeck = true };
 

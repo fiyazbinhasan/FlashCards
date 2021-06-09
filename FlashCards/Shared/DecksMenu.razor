@@ -9,6 +9,6 @@
 
     @if (DecksState.Value.AddingDeck)
     {
-        <MudTextField Class="px-4 mt-4" @bind-Value="DeckTitle" OnKeyUp="AddDeck" Label="Deck Name" Variant="Variant.Text" AutoFocus="@AutoFocus" OnBlur="@((e) => Dispatcher.Dispatch(new HideAddDeckAction()))"/>
+        <MudTextField Class="px-4 mt-4" @bind-Value="DeckTitle" OnKeyUp="AddDeck" Label="Deck Name" Variant="Variant.Text" AutoFocus="@AutoFocus" OnBlur="@((e) => Dispatcher.Dispatch(new HideAddDeckAction()))" />
     }
 </MudNavMenu>
