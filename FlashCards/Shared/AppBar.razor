@@ -5,6 +5,7 @@
 <MudAppBar Elevation="1">
     <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="ToggleMenu" />
     <MudText Typo="Typo.h5">Flash Cards</MudText>
+
     @if (DecksState.Value.SelectedDeckId != Guid.Empty)
     {
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
@@ -18,11 +19,17 @@
             </MudButton>
         </MudHidden>
     }
+
     <MudAppBarSpacer />
-    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-        <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" />
-        <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" />
-    </MudHidden>
+
+    @if (DecksState.Value.SelectedDeckId != Guid.Empty)
+    {
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")"/>
+            <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
+        </MudHidden>
+    }
+
     <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                    Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
 </MudAppBar>
