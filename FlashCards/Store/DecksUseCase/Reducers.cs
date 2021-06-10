@@ -16,5 +16,8 @@ namespace FlashCards.Store.DecksUseCase
 
         [ReducerMethod]
         public static DecksState ReduceHideAddDeckAction(DecksState state, HideAddDeckAction action) => state with { AddingDeck = false };
+
+        [ReducerMethod]
+        public static DecksState ReduceSelectDeckAction(DecksState state, SelectDeckAction action) => state with { SelectedDeckId = action.DeckId };
     }
 }
