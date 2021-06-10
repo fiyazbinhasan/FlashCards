@@ -36,7 +36,7 @@ else
 
     [Inject]
     private IDispatcher Dispatcher { get; set; }
-    
+
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
         Dispatcher.Dispatch(new SelectDeckAction(DeckId));

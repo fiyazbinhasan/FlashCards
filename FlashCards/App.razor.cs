@@ -2,9 +2,9 @@
 using FlashCards.Store.CardsUseCase;
 using FlashCards.Store.DecksUseCase;
 using Fluxor;
+using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
-using Fluxor.Blazor.Web.Components;
 
 namespace FlashCards
 {
