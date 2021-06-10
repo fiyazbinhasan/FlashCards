@@ -1,17 +1,18 @@
 ﻿@inherits LayoutComponentBase
+@using FlashCards.Shared
 
 <MudThemeProvider Theme="_customTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <AppBar OnMenuToggle="@DrawerToggle" />
+    <AppBar OnMenuToggle="DrawerToggle"/>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
         <DecksHeader />
         <DecksMenu />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer Class="mt-12 px-8" MaxWidth="MaxWidth.False">
+        <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
             @Body
         </MudContainer>
     </MudMainContent>
@@ -25,7 +26,7 @@
         _drawerOpen = !_drawerOpen;
     }
 
-    MudTheme _customTheme = new MudTheme()
+    readonly MudTheme _customTheme = new MudTheme()
     {
         Palette = new Palette()
         {

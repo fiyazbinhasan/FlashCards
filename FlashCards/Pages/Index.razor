@@ -1,24 +1,45 @@
 ﻿@page "/"
+@page "/decks/{DeckId:guid}"
+@page "/decks/{DeckId:guid}/{Action}"
 
-<MudGrid>
-    <MudItem xs="12" sm="6" md="3">
-        <MudPaper Elevation="2" Class="d-flex justify-center align-center pa-3" Style="height: 100px;">
-            <MudText Typo="Typo.h6">Lorem</MudText>
-        </MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" md="3">
-        <MudPaper Elevation="2" Class="d-flex justify-center align-center pa-3" Style="height: 100px;">
-            <MudText Typo="Typo.h6">ipsum</MudText>
-        </MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" md="3">
-        <MudPaper Elevation="2" Class="d-flex justify-center align-center pa-3" Style="height: 100px;">
-            <MudText Typo="Typo.h6">dolor</MudText>
-        </MudPaper>
-    </MudItem>
-    <MudItem xs="12" sm="6" md="3">
-        <MudPaper Elevation="2" Class="d-flex justify-center align-center pa-3" Style="height: 100px;">
-            <MudText Typo="Typo.h6">sit</MudText>
-        </MudPaper>
-    </MudItem>
-</MudGrid>
+@using Fluxor
+@using FlashCards.Store.DecksUseCase
+@using FlashCards.Store.CardsUseCase
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@if (DeckId == Guid.Empty)
+{
+    <MudAlert Severity="Severity.Info">Start by adding or selecting a deck from the sidebar</MudAlert>
+}
+
+@if (DeckId != Guid.Empty && !CardsState.Value.Cards.Any())
+{
+    <MudAlert Severity="Severity.Info">You have not add any card for this deck yet</MudAlert>
+}
+else
+{
+    <VisibleCards Cards="CardsState.Value.Cards" />
+}
+
+@if (!string.IsNullOrEmpty(Action))
+{
+    <CardModal DeckId="DeckId" />
+}
+
+@code
+{
+    [Parameter] public Guid DeckId { get; set; }
+    [Parameter] public string Action { get; set; }
+
+    [Inject]
+    private IState<CardsState> CardsState { get; set; }
+
+    [Inject]
+    private IDispatcher Dispatcher { get; set; }
+    
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        Dispatcher.Dispatch(new SelectDeckAction(DeckId));
+        return base.OnAfterRenderAsync(firstRender);
+    }
+}

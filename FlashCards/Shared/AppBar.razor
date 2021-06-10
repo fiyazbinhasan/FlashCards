@@ -1,29 +1,40 @@
-﻿<MudAppBar Elevation="1">
-    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleMenu" />
+﻿@using Fluxor
+@using FlashCards.Store.DecksUseCase
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+
+<MudAppBar Elevation="1">
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="ToggleMenu" />
     <MudText Typo="Typo.h5">Flash Cards</MudText>
-    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-        <MudButton Class="ml-12" Variant="Variant.Filled"
-                   StartIcon="@Icons.Filled.NoteAdd"
-                   Color="Color.Primary">
-            Add Card
-        </MudButton>
-        <MudButton Class="ml-2" Variant="Variant.Filled"
-                   StartIcon="@Icons.Filled.LocalLibrary"
-                   Color="Color.Primary">
-            Study Deck
-        </MudButton>
-    </MudHidden>
+    @if (DecksState.Value.SelectedDeckId != Guid.Empty)
+    {
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <MudButton Class="ml-12" Variant="Variant.Filled" StartIcon="@Icons.Filled.NoteAdd" Color="Color.Primary"
+                       Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")">
+                Add Card
+            </MudButton>
+            <MudButton Class="ml-2" Variant="Variant.Filled" StartIcon="@Icons.Filled.LocalLibrary" Color="Color.Primary"
+                       Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")">
+                Study Deck
+            </MudButton>
+        </MudHidden>
+    }
     <MudAppBarSpacer />
     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
         <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" />
         <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" />
     </MudHidden>
-    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/fiyazbinhasan/FlashCards"
-                   Target="_blank" />
+    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+                   Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
 </MudAppBar>
 
 @code
 {
+    [Parameter]
+    public Guid? DeckId { get; set; }
+
+    [Inject]
+    public IState<DecksState> DecksState { get; set; }
+
     [Parameter]
     public EventCallback OnMenuToggle { get; set; }
 

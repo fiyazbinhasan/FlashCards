@@ -24,9 +24,14 @@ namespace FlashCards.Shared
             if (e.Code == "Enter" || e.Code == "NumpadEnter")
             {
                 Dispatcher.Dispatch(new AddDeckAction(new Deck(Guid.NewGuid(), DeckTitle)));
-                Dispatcher.Dispatch(new HideAddDeckAction());
+                HideAddDeck();
                 DeckTitle = string.Empty;
             }
+        }
+
+        private void HideAddDeck()
+        {
+            Dispatcher.Dispatch(new HideAddDeckAction());
         }
 
         protected override Task OnInitializedAsync()
