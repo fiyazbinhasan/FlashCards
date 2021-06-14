@@ -8,6 +8,14 @@ namespace FlashCards.Store.CardsUseCase
         [ReducerMethod]
         public static CardsState ReduceAddCardAction(CardsState state, AddCardAction action) => state with { Cards = state.Cards.Concat(new Card[] { action.Card }) };
 
+
+        [ReducerMethod]
+        public static CardsState ReduceGetCardsAction(CardsState state, GetCardsAction action) => state with { Cards = action.Cards };
+
+        [ReducerMethod]
+        public static CardsState ReduceDeleteCardAction(CardsState state, DeleteCardAction action) =>
+            state with { Cards = state.Cards.Where(c => c.Id != action.CardId) };
+
         [ReducerMethod]
         public static CardsState ReduceEditCardAction(CardsState state, EditCardAction action)
         {
@@ -23,10 +31,7 @@ namespace FlashCards.Store.CardsUseCase
         }
 
         [ReducerMethod]
-        public static CardsState ReduceGetCardsAction(CardsState state, GetCardsAction action) => state with { Cards = action.Cards };
-
-        [ReducerMethod]
-        public static CardsState ReduceDeleteCardAction(CardsState state, DeleteCardAction action) =>
-            state with { Cards = state.Cards.Where(c => c.Id != action.CardId) };
+        public static CardsState ReduceFilterCardAction(CardsState state, FilterCardAction action) =>
+            state with { Filter = action.Query };
     }
 }

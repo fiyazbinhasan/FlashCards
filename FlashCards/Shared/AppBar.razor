@@ -1,15 +1,19 @@
 ﻿@using Fluxor
 @using FlashCards.Store.DecksUseCase
+@using FlashCards.Store.CardsUseCase
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <MudAppBar Elevation="1">
     <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="ToggleMenu" />
-    <MudText Typo="Typo.h5">Flash Cards</MudText>
+
+    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+        <MudText Typo="Typo.h5">Flash Cards</MudText>
+    </MudHidden>
 
     @if (DecksState.Value.SelectedDeckId != Guid.Empty)
     {
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-            <MudButton Class="ml-12" Variant="Variant.Filled" StartIcon="@Icons.Filled.NoteAdd" Color="Color.Primary"
+            <MudButton Class="ml-8" Variant="Variant.Filled" StartIcon="@Icons.Filled.NoteAdd" Color="Color.Primary"
                        Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")">
                 Add Card
             </MudButton>
@@ -17,28 +21,46 @@
                        Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")">
                 Study Deck
             </MudButton>
-            <MudAppBarSpacer/>
-            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
-                           Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
         </MudHidden>
 
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-            <MudAppBarSpacer />
             <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")" />
             <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
-            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
-                           Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
         </MudHidden>
+
+        <MudAppBarSpacer />
+
+        <MudElement HtmlTag="div">
+            <MudTextField @bind-Value="@_filterText"
+                          Variant="Variant.Text"
+                          Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Filled.Search"
+                          DebounceInterval="500"
+                          OnDebounceIntervalElapsed="HandleIntervalElapsed"
+                          Clearable="true"
+                          AdornmentColor="Color.Inherit"
+                          Style="margin: 0 16px; color:white"
+                          FullWidth="false"
+                          IconSize="Size.Medium" />
+        </MudElement>
+
+        <MudIconButton Class="ml-2" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+                       Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
     }
 </MudAppBar>
 
 @code
 {
+    string _filterText;
+
     [Parameter]
     public Guid? DeckId { get; set; }
 
     [Inject]
     public IState<DecksState> DecksState { get; set; }
+
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
 
     [Parameter]
     public EventCallback OnMenuToggle { get; set; }
@@ -46,5 +68,10 @@
     private async Task ToggleMenu()
     {
         await OnMenuToggle.InvokeAsync();
+    }
+
+    void HandleIntervalElapsed(string filterText)
+    {
+        Dispatcher.Dispatch(new FilterCardAction(filterText));
     }
 }
