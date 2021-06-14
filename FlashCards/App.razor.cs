@@ -1,10 +1,9 @@
-﻿using System;
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 using FlashCards.Store.CardsUseCase;
 using FlashCards.Store.DecksUseCase;
 using Fluxor;
-using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 
 namespace FlashCards

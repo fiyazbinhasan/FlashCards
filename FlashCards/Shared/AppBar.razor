@@ -17,21 +17,19 @@
                        Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")">
                 Study Deck
             </MudButton>
+            <MudAppBarSpacer/>
+            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+                           Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
         </MudHidden>
-    }
 
-    <MudAppBarSpacer />
-
-    @if (DecksState.Value.SelectedDeckId != Guid.Empty)
-    {
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <MudAppBarSpacer />
             <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")" />
             <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
+            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+                           Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
         </MudHidden>
     }
-
-    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
-                   Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
 </MudAppBar>
 
 @code
