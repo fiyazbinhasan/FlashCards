@@ -9,7 +9,7 @@
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
             <div class="d-flex justify-center">
                 <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large">
-                    <MudIconButton Icon="@Icons.Material.Filled.Save" OnClick="SavCard" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Save" OnClick="SaveCard" />
                     <MudIconButton Icon="@Icons.Material.Filled.Cancel" OnClick="Cancel" />
                     @if (OnDeleteCard.HasDelegate)
                     {
@@ -22,7 +22,7 @@
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
             <div class="d-flex justify-space-between">
                 <div>
-                    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" OnClick="SavCard">Save</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveCard">Save</MudButton>
                     <MudButton StartIcon="@Icons.Material.Filled.Cancel" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" OnClick="Cancel">Cancel</MudButton>
                 </div>
 
@@ -47,6 +47,9 @@
     public Guid CardId { get; set; }
 
     [Parameter]
+    public Card Card { get; set; }
+
+    [Parameter]
     public EventCallback<Card> OnSaveCard { get; set; }
 
     [Parameter]
@@ -55,10 +58,18 @@
     public string Front { get; set; }
 
     public string Back { get; set; }
-
-    private async Task SavCard()
+    
+    protected override Task OnParametersSetAsync()
     {
-        await OnSaveCard.InvokeAsync(new Card(Guid.NewGuid(), Front, Back, 1, DeckId));
+        if(Card != null)
+            (Front, Back) = (Card.Front, Card.Back);
+
+        return base.OnParametersSetAsync();
+    }
+
+    private async Task SaveCard()
+    {
+        await OnSaveCard.InvokeAsync(new Card(Card?.Id == CardId ? Card.Id : Guid.NewGuid(), Front, Back, 1, DeckId));
         NavigationManager.NavigateTo($"/decks/{DeckId}");
     }
 

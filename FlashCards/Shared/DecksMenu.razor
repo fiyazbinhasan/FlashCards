@@ -1,7 +1,6 @@
 ﻿@using FlashCards.Store.DecksUseCase
 @using Fluxor
-@using Microsoft.AspNetCore.Components
-@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <MudNavMenu Class="mt-2">
     @foreach (var deck in DecksState.Value.Decks)
