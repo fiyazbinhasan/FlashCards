@@ -5,10 +5,33 @@
         <MudText Typo="Typo.h6">Add Card</MudText>
         <MudTextField Class="mt-8 mb-8" Label="Front" Variant="Variant.Outlined" @bind-Value="@Front" Lines="4" />
         <MudTextField Class="mb-8" Label="Back" Variant="Variant.Outlined" @bind-Value="@Back" Lines="4" />
-        <div class="d-flex justify-end">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddCard" Class="px-10 mx-2">Add</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="Cancel" Class="px-10 mx-2">Cancel</MudButton>
-        </div>
+        
+        <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+            <div class="d-flex justify-center">
+                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large">
+                    <MudIconButton Icon="@Icons.Material.Filled.Save" OnClick="SaveCard" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Cancel" OnClick="Cancel" />
+                    @if (OnDeleteCard.HasDelegate)
+                    {
+                        <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" OnClick="DeleteCard" />
+                    }
+                </MudButtonGroup>
+            </div>
+        </MudHidden>
+
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <div class="d-flex justify-space-between">
+                <div>
+                    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveCard">Save</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Filled.Cancel" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" OnClick="Cancel">Cancel</MudButton>
+                </div>
+
+                @if (OnDeleteCard.HasDelegate)
+                {
+                    <MudButton StartIcon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="DeleteCard">Delete</MudButton>
+                }
+            </div>
+        </MudHidden>
     </div>
 </div>
 
@@ -21,15 +44,38 @@
     public Guid DeckId { get; set; }
 
     [Parameter]
-    public EventCallback<Card> OnAddCard { get; set; }
+    public Guid CardId { get; set; }
+
+    [Parameter]
+    public Card Card { get; set; }
+
+    [Parameter]
+    public EventCallback<Card> OnSaveCard { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnDeleteCard { get; set; }
 
     public string Front { get; set; }
 
     public string Back { get; set; }
-
-    private async Task AddCard()
+    
+    protected override Task OnParametersSetAsync()
     {
-        await OnAddCard.InvokeAsync(new Card(Guid.NewGuid(), Front, Back, 1, DeckId));
+        if(Card != null)
+            (Front, Back) = (Card.Front, Card.Back);
+
+        return base.OnParametersSetAsync();
+    }
+
+    private async Task SaveCard()
+    {
+        await OnSaveCard.InvokeAsync(new Card(Card?.Id == CardId ? Card.Id : Guid.NewGuid(), Front, Back, 1, DeckId));
+        NavigationManager.NavigateTo($"/decks/{DeckId}");
+    }
+
+    private async Task DeleteCard()
+    {
+        await OnDeleteCard.InvokeAsync(CardId);
         NavigationManager.NavigateTo($"/decks/{DeckId}");
     }
 

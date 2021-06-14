@@ -1,6 +1,7 @@
 ﻿@page "/"
 @page "/decks/{DeckId:guid}"
 @page "/decks/{DeckId:guid}/{Action}"
+@page "/decks/{DeckId:guid}/{Action}/{CardId:guid}"
 
 @using Fluxor
 @using FlashCards.Store.DecksUseCase
@@ -22,7 +23,7 @@ else
     }
     else if (Action.ToLowerInvariant() == "edit")
     {
-        <AddModal DeckId="DeckId" />
+        <EditModal CardId="CardId" DeckId="DeckId"/>
     }
 }
 
@@ -30,6 +31,7 @@ else
 {
     [Parameter] public Guid DeckId { get; set; }
     [Parameter] public string Action { get; set; }
+    [Parameter] public Guid CardId { get; set; }
 
     [Inject]
     private IDispatcher Dispatcher { get; set; }

@@ -1,0 +1,28 @@
+﻿@using Fluxor
+@using FlashCards.Store.CardsUseCase
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<CardsState> _cardState
+
+<CardModal DeckId="DeckId" Card="@_cardState.Value.Cards.SingleOrDefault(c => c.Id == CardId)" CardId="CardId" OnDeleteCard="DeleteCard" OnSaveCard="SaveCard" />
+
+@code
+{
+    [Parameter]
+    public Guid DeckId { get; set; }
+
+    [Parameter]
+    public Guid CardId { get; set; }
+
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
+
+    public void DeleteCard(Guid cardId)
+    {
+        Dispatcher.Dispatch(new DeleteCardAction(cardId));
+    }
+
+    public void SaveCard(Card card)
+    {
+        Dispatcher.Dispatch(new EditCardAction(card));
+    }
+}
