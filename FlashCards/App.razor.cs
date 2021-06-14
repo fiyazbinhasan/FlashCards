@@ -1,4 +1,5 @@
-﻿using Blazored.LocalStorage;
+﻿using System;
+using Blazored.LocalStorage;
 using FlashCards.Store.CardsUseCase;
 using FlashCards.Store.DecksUseCase;
 using Fluxor;
@@ -8,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace FlashCards
 {
-    public partial class App : FluxorComponent
+    public partial class App : IDisposable
     {
         [Inject]
         private ILocalStorageService LocalStorage { get; set; }
-
-        [Inject]
-        private NavigationManager NavigationManager { get; set; }
 
         [Inject]
         private IDispatcher Dispatcher { get; set; }
@@ -35,6 +33,9 @@ namespace FlashCards
                 if (decks != null)
                     Dispatcher.Dispatch(new GetDecksAction(decks));
 
+                if (cards != null)
+                    Dispatcher.Dispatch(new GetCardsAction(cards));
+
                 DecksState.StateChanged += DecksState_StateChanged;
                 CardsState.StateChanged += CardsState_StateChanged;
             }
@@ -52,11 +53,21 @@ namespace FlashCards
                 .ConfigureAwait(false);
         }
 
-        protected override void Dispose(bool disposing)
+        private void UnsubscribeStateChanges()
         {
             DecksState.StateChanged -= DecksState_StateChanged;
             CardsState.StateChanged -= CardsState_StateChanged;
-            base.Dispose(disposing);
+        }
+
+        public void Dispose()
+        {
+            UnsubscribeStateChanges();
+            GC.SuppressFinalize(this);
+        }
+
+        ~App()
+        {
+            UnsubscribeStateChanges();
         }
     }
 }

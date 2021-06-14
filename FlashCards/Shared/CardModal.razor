@@ -1,10 +1,8 @@
-﻿@using Fluxor
-@using FlashCards.Store.CardsUseCase
-@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+﻿@using FlashCards.Store.CardsUseCase
 
 <div class="modal">
     <div class="modal-content">
-        <MudText Typo="Typo.h6">Add Card for deck: @DeckId</MudText>
+        <MudText Typo="Typo.h6">Add Card</MudText>
         <MudTextField Class="mt-8 mb-8" Label="Front" Variant="Variant.Outlined" @bind-Value="@Front" Lines="4" />
         <MudTextField Class="mb-8" Label="Back" Variant="Variant.Outlined" @bind-Value="@Back" Lines="4" />
         <div class="d-flex justify-end">
@@ -15,22 +13,23 @@
 </div>
 
 @code {
-    [Parameter]
-    public Guid DeckId { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
-    [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    [Parameter]
+    public Guid DeckId { get; set; }
+
+    [Parameter]
+    public EventCallback<Card> OnAddCard { get; set; }
 
     public string Front { get; set; }
 
     public string Back { get; set; }
 
-    void AddCard()
+    private async Task AddCard()
     {
-        Dispatcher.Dispatch(new AddCardAction(new Card(Guid.NewGuid(), Front, Back, 1)));
+        await OnAddCard.InvokeAsync(new Card(Guid.NewGuid(), Front, Back, 1, DeckId));
         NavigationManager.NavigateTo($"/decks/{DeckId}");
     }
 
