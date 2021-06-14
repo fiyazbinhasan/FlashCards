@@ -2,7 +2,7 @@
 @using FlashCards.Store.DecksUseCase
 @using FlashCards.Store.CardsUseCase
 
-<CardModal DeckId="DeckId" OnSaveCard="SaveCard"/>
+<CardModal DeckId="DeckId" OnSaveCard="SaveCard" />
 
 @code
 {
@@ -11,7 +11,7 @@
 
     [Inject]
     public IDispatcher Dispatcher { get; set; }
-    
+
     public void SaveCard(Card card)
     {
         Dispatcher.Dispatch(new AddCardAction(card));
