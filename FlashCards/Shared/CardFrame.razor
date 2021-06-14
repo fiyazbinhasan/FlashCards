@@ -1,9 +1,8 @@
 ﻿@using FlashCards.Store.CardsUseCase
 @inject NavigationManager _navigationManager;
 
-<MudPaper Elevation="2" Class="d-flex flex-column justify-center align-center pa-3" @onclick="@(e => _navigationManager.NavigateTo($"/decks/{Card.DeckId}/edit"))" Style="cursor: pointer;">
+<MudPaper Elevation="2" Class="d-flex flex-column justify-center align-center pa-3" @onclick="@(e => _navigationManager.NavigateTo($"/decks/{Card.DeckId}/edit/{Card.Id}"))" Style="cursor: pointer; height: 100px;">
     <MudText Typo="Typo.h4">@Card.Front</MudText>
-    <MudText Typo="Typo.h6">@Card.Back</MudText>
 </MudPaper>
 
 @code {

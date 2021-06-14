@@ -1,0 +1,26 @@
+﻿@using Fluxor
+@using FlashCards.Store.CardsUseCase
+
+<CardModal DeckId="DeckId" CardId="CardId" OnDeleteCard="DeleteCard" OnSaveCard="SaveCard" />
+
+@code
+{
+    [Parameter]
+    public Guid DeckId { get; set; }
+
+    [Parameter]
+    public Guid CardId { get; set; }
+
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
+
+    public void DeleteCard(Guid cardId)
+    {
+        Dispatcher.Dispatch(new DeleteCardAction(cardId));
+    }
+
+    public void SaveCard(Card card)
+    {
+        Dispatcher.Dispatch(new AddCardAction(card));
+    }
+}

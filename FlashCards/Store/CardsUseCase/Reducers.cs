@@ -10,5 +10,9 @@ namespace FlashCards.Store.CardsUseCase
 
         [ReducerMethod]
         public static CardsState ReduceGetCardsAction(CardsState state, GetCardsAction action) => state with { Cards = action.Cards };
+
+        [ReducerMethod]
+        public static CardsState ReduceDeleteCardAction(CardsState state, DeleteCardAction action) =>
+            state with { Cards = state.Cards.Where(c => c.Id != action.CardId) };
     }
 }

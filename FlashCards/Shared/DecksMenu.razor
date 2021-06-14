@@ -1,11 +1,15 @@
-﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
+﻿@using FlashCards.Store.DecksUseCase
+@using Fluxor
+@using Microsoft.AspNetCore.Components
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent;
 
 <MudNavMenu Class="mt-2">
     @foreach (var deck in DecksState.Value.Decks)
     {
-        <MudNavLink Href="@($"/decks/{deck.Id}")" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">@deck.Title
-        </MudNavLink>
-    }
+        <MudNavLink Href="@($"/decks/{deck.Id}")" Icon="@Icons.Filled.Bookmark" IconColor="Color.Primary">
+            @deck.Title
+    </MudNavLink>
+}
 
     @if (DecksState.Value.AddingDeck)
     {
@@ -13,3 +17,38 @@
                       AutoFocus="AutoFocus" OnBlur="HideAddDeck" />
     }
 </MudNavMenu>
+
+@code
+{
+    private string DeckTitle { get; set; } = string.Empty;
+    private bool AutoFocus { get; set; } = false;
+
+    [Inject]
+    private IState<DecksState> DecksState { get; set; }
+
+    [Inject]
+    private IDispatcher Dispatcher { get; set; }
+
+    private void AddDeck(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            Dispatcher.Dispatch(new AddDeckAction(new Deck(Guid.NewGuid(), DeckTitle)));
+            HideAddDeck();
+            DeckTitle = string.Empty;
+        }
+    }
+
+    private void HideAddDeck()
+    {
+        Dispatcher.Dispatch(new HideAddDeckAction());
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (!DecksState.Value.Decks.Any())
+            AutoFocus = true;
+
+        return base.OnInitializedAsync();
+    }
+}
