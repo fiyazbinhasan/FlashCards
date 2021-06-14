@@ -4,26 +4,26 @@
 
 @using Fluxor
 @using FlashCards.Store.DecksUseCase
-@using FlashCards.Store.CardsUseCase
-@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 @if (DeckId == Guid.Empty)
 {
     <MudAlert Severity="Severity.Info">Start by adding or selecting a deck from the sidebar</MudAlert>
 }
-
-@if (DeckId != Guid.Empty && !CardsState.Value.Cards.Any())
-{
-    <MudAlert Severity="Severity.Info">You have not add any card for this deck yet</MudAlert>
-}
 else
 {
-    <VisibleCards Cards="CardsState.Value.Cards" />
+    <VisibleCards DeckId="DeckId" />
 }
 
 @if (!string.IsNullOrEmpty(Action))
 {
-    <CardModal DeckId="DeckId" />
+    if (Action.ToLowerInvariant() == "new")
+    {
+        <AddModal DeckId="DeckId" />
+    }
+    else if (Action.ToLowerInvariant() == "edit")
+    {
+        <AddModal DeckId="DeckId" />
+    }
 }
 
 @code
@@ -32,14 +32,12 @@ else
     [Parameter] public string Action { get; set; }
 
     [Inject]
-    private IState<CardsState> CardsState { get; set; }
-
-    [Inject]
     private IDispatcher Dispatcher { get; set; }
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
         Dispatcher.Dispatch(new SelectDeckAction(DeckId));
+
         return base.OnAfterRenderAsync(firstRender);
     }
 }

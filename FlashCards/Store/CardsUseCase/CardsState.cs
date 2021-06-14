@@ -5,5 +5,5 @@ namespace FlashCards.Store.CardsUseCase
 {
     public record CardsState(IEnumerable<Card> Cards);
 
-    public record Card(Guid Id, string Front, string Back, int Score);
+    public record Card(Guid Id, string Front, string Back, int Score, Guid DeckId);
 }

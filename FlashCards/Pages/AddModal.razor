@@ -1,26 +1,19 @@
-﻿@*@page "/decks/{DeckId:guid}/new"
-    @using Fluxor
-    @using FlashCards.Store.DecksUseCase
-    @inherits Fluxor.Blazor.Web.Components.FluxorComponent
+﻿@using Fluxor
+@using FlashCards.Store.DecksUseCase
+@using FlashCards.Store.CardsUseCase
 
-    <CardModal DeckId="@DeckId" />
+<CardModal DeckId="DeckId" OnAddCard="@AddCard"/>
 
-    @code
+@code
+{
+    [Parameter]
+    public Guid DeckId { get; set; }
+
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
+    
+    public void AddCard(Card card)
     {
-        [Parameter]
-        public Guid DeckId { get; set; }
-
-        [Inject]
-        public IDispatcher Dispatcher { get; set; }
-
-        [Inject]
-        public IState<DecksState> DecksState { get; set; }
-
-        protected override Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender && DeckId != Guid.Empty)
-                Dispatcher.Dispatch(new SelectDeckAction(DeckId));
-
-            return base.OnAfterRenderAsync(firstRender);
-        }
-    }*@
+        Dispatcher.Dispatch(new AddCardAction(card));
+    }
+}
