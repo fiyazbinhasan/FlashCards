@@ -37,16 +37,22 @@
                           AdornmentIcon="@Icons.Filled.Search"
                           DebounceInterval="500"
                           OnDebounceIntervalElapsed="HandleIntervalElapsed"
-                          Clearable="true"
                           AdornmentColor="Color.Inherit"
                           Style="margin: 0 16px; color:white"
-                          FullWidth="false"
-                          IconSize="Size.Medium" />
+                          IconSize="Size.Medium"/>
         </MudElement>
+        
+        <MudIconButton Class="ml-2" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+                       Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
+    }
+    else
+    {
+        <MudAppBarSpacer />
 
         <MudIconButton Class="ml-2" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                        Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
     }
+
 </MudAppBar>
 
 @code

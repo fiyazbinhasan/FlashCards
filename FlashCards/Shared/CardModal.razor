@@ -55,9 +55,9 @@
     [Parameter]
     public EventCallback<Guid> OnDeleteCard { get; set; }
 
-    public string Front { get; set; }
+    public string Front { get; set; } = string.Empty;
 
-    public string Back { get; set; }
+    public string Back { get; set; } = string.Empty;
 
     protected override Task OnParametersSetAsync()
     {
