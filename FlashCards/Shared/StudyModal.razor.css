@@ -1,0 +1,12 @@
+﻿.no-cards,
+.modal-content .front div:first-child,
+.modal-content .back div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+}
+
+.modal-content .hide {
+    display: none;
+}
