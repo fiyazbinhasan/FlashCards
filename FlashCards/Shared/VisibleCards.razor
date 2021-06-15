@@ -1,6 +1,6 @@
 ﻿@using Fluxor
 @using FlashCards.Store.CardsUseCase
-@using DuoVia.FuzzyStrings
+@using FuzzySharp
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject IState<CardsState> _cardsState
 
@@ -11,8 +11,8 @@
 
 <MudGrid Class="mt-4">
     @{
-        bool Filter(Card c) => (_cardsState.Value.Filter.FuzzyEquals(c.Front, 0.40D) 
-                               || _cardsState.Value.Filter.FuzzyEquals(c.Back, 0.40D)) 
+        bool Filter(Card c) => (Fuzz.PartialRatio(_cardsState.Value.Filter, c.Front) >= 70
+                               || Fuzz.PartialRatio(_cardsState.Value.Filter, c.Back) >= 70)
                                || string.IsNullOrEmpty(_cardsState.Value.Filter);
 
         foreach (var card in _cardsState.Value.Cards.Where(c => c.DeckId.Equals(DeckId) && Filter(c)))
