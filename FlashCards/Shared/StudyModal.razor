@@ -1,11 +1,28 @@
-﻿<div class="modal">
+﻿@using Fluxor
+@using FlashCards.Store.CardsUseCase
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<CardsState> _cardsState;
+@inject IDispatcher _dispatcher;
+
+<div class="modal">
     <div class="modal-content">
-        <div class="front">
+        <div class="@((_cardsState.Value.ShowBack ? "front hide" : "front"))">
             <div>
                 <MudText Typo="Typo.h4">Hello</MudText>
             </div>
             <div class="d-flex justify-end">
-                <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Flip" Color="Color.Primary">Flip</MudButton>
+                <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Flip" Color="Color.Primary" OnClick="((e) => _dispatcher.Dispatch(new ShowCardBackAction()))">Flip</MudButton>
+            </div>
+        </div>
+        <div class="@((_cardsState.Value.ShowBack ? "back" : "back hide"))">
+            <div>
+                <MudText Typo="Typo.body1" Align="Align.Center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</MudText>
+            </div>
+            <MudText Typo="Typo.h6" Class="ma-6" Align="Align.Center">How did you do?</MudText>
+            <div class="d-flex justify-center">
+                <MudButton Class="mx-3" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbDown" Color="Color.Error">Poorly</MudButton>
+                <MudButton Class="mx-3" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbUp" Color="Color.Info">Okay</MudButton>
+                <MudButton Class="mx-3" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary">Great</MudButton>
             </div>
         </div>
     </div>

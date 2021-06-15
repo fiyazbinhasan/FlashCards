@@ -33,5 +33,9 @@ namespace FlashCards.Store.CardsUseCase
         [ReducerMethod]
         public static CardsState ReduceFilterCardAction(CardsState state, FilterCardAction action) =>
             state with { Filter = action.Query };
+
+        [ReducerMethod]
+        public static CardsState ReduceShowCardBackAction(CardsState state, ShowCardBackAction action) =>
+            state with { ShowBack = true };
     }
 }
