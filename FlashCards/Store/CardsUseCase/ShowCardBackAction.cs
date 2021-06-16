@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace FlashCards.Store.CardsUseCase
 {
-    public record ShowCardBackAction();
+    public record ShowCardBackAction(bool ShowBack);
 }

@@ -4,6 +4,7 @@ using FlashCards.Store.DecksUseCase;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 
 namespace FlashCards
@@ -26,8 +27,8 @@ namespace FlashCards
         {
             if (firstRender)
             {
-                var decks = await LocalStorage.GetItemAsync<Deck[]>("decks");
-                var cards = await LocalStorage.GetItemAsync<Card[]>("cards");
+                var decks = await LocalStorage.GetItemAsync<IImmutableList<Deck>>("decks");
+                var cards = await LocalStorage.GetItemAsync<IImmutableList<Card>>("cards");
 
                 if (decks != null)
                     Dispatcher.Dispatch(new GetDecksAction(decks));
