@@ -7,10 +7,12 @@ namespace FlashCards.Store.CardsUseCase
     public class Reducers
     {
         [ReducerMethod]
-        public static CardsState ReduceAddCardAction(CardsState state, AddCardAction action) => state with { Cards = state.Cards.Add(action.Card) };
-        
+        public static CardsState ReduceAddCardAction(CardsState state, AddCardAction action) =>
+            state with { Cards = state.Cards.Add(action.Card) };
+
         [ReducerMethod]
-        public static CardsState ReduceGetCardsAction(CardsState state, GetCardsAction action) => state with { Cards = action.Cards.ToImmutableList() };
+        public static CardsState ReduceGetCardsAction(CardsState state, GetCardsAction action) =>
+            state with { Cards = action.Cards.ToImmutableList() };
 
         [ReducerMethod]
         public static CardsState ReduceDeleteCardAction(CardsState state, DeleteCardAction action) =>
