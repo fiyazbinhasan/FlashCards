@@ -1,5 +1,5 @@
-﻿using System.Collections.Immutable;
-using Fluxor;
+﻿using Fluxor;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace FlashCards.Store.CardsUseCase
@@ -27,7 +27,7 @@ namespace FlashCards.Store.CardsUseCase
                 ? state with
                 {
                     Cards = state.Cards.Replace(card,
-                        card with {Front = action.Card.Front, Back = action.Card.Back})
+                        card with { Front = action.Card.Front, Back = action.Card.Back })
                 }
                 : state;
         }

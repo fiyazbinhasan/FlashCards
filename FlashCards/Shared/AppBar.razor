@@ -28,7 +28,7 @@
             <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
         </MudHidden>
 
-        <MudAppBarSpacer  />
+        <MudAppBarSpacer />
 
         <MudTextField @bind-Value="@_filterText"
                       Variant="Variant.Text"
@@ -50,7 +50,6 @@
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                        Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
     }
-
 </MudAppBar>
 
 @code

@@ -1,5 +1,4 @@
 ﻿using Fluxor;
-using System;
 using System.Collections.Immutable;
 
 namespace FlashCards.Store.CardsUseCase

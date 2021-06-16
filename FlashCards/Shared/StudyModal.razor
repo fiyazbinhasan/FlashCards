@@ -52,7 +52,7 @@
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
-    
+
     void Pause()
     {
         NavigationManager.NavigateTo($"/decks/{DeckId}");

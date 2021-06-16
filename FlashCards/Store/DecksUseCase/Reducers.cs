@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-using Fluxor;
-using System.Linq;
+﻿using Fluxor;
 
 namespace FlashCards.Store.DecksUseCase
 {
