@@ -10,7 +10,7 @@
     <PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />
     <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
-    <PackageReference Include="MudBlazor" Version="5.0.11" />
+    <PackageReference Include="MudBlazor" Version="5.0.13" />
   </ItemGroup>
 
 </Project>

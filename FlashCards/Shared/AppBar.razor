@@ -24,8 +24,10 @@
         </MudHidden>
 
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
-            <MudIconButton Icon="@Icons.Outlined.NoteAdd" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")" />
-            <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Color="Color.Inherit" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
+            <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary">
+                <MudIconButton Icon="@Icons.Outlined.NoteAdd" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")" />
+                <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
+            </MudButtonGroup>
         </MudHidden>
 
         <MudAppBarSpacer />

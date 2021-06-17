@@ -2,13 +2,27 @@
 
 <div class="modal">
     <div class="modal-content">
-        <MudText Typo="Typo.h6">Add Card</MudText>
+        <MudText Typo="Typo.h6">@(OnDeleteCard.HasDelegate ? "Edit Card" : "Add Card")</MudText>
         <MudTextField Class="mt-8 mb-8" Label="Front" Variant="Variant.Outlined" @bind-Value="@Front" Lines="4" />
         <MudTextField Class="mb-8" Label="Back" Variant="Variant.Outlined" @bind-Value="@Back" Lines="4" />
+        
+        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+            <div class="d-flex justify-space-between">
+                <div>
+                    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveCard">Save</MudButton>
+                    <MudButton StartIcon="@Icons.Material.Filled.Cancel" Variant="Variant.Filled" Color="Color.Secondary" Class="mx-2" OnClick="Cancel">Cancel</MudButton>
+                </div>
+
+                @if (OnDeleteCard.HasDelegate)
+                {
+                    <MudButton StartIcon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="DeleteCard">Delete</MudButton>
+                }
+            </div>
+        </MudHidden>
 
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
             <div class="d-flex justify-center">
-                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large">
+                <MudButtonGroup Variant="Variant.Filled" Color="Color.Secondary">
                     <MudIconButton Icon="@Icons.Material.Filled.Save" OnClick="SaveCard" />
                     <MudIconButton Icon="@Icons.Material.Filled.Cancel" OnClick="Cancel" />
                     @if (OnDeleteCard.HasDelegate)
@@ -16,20 +30,6 @@
                         <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" OnClick="DeleteCard" />
                     }
                 </MudButtonGroup>
-            </div>
-        </MudHidden>
-
-        <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-            <div class="d-flex justify-space-between">
-                <div>
-                    <MudButton StartIcon="@Icons.Material.Filled.Save" Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveCard">Save</MudButton>
-                    <MudButton StartIcon="@Icons.Material.Filled.Cancel" Variant="Variant.Filled" Color="Color.Primary" Class="mx-2" OnClick="Cancel">Cancel</MudButton>
-                </div>
-
-                @if (OnDeleteCard.HasDelegate)
-                {
-                    <MudButton StartIcon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="DeleteCard">Delete</MudButton>
-                }
             </div>
         </MudHidden>
     </div>

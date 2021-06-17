@@ -7,6 +7,6 @@ namespace FlashCards.Store.CardsUseCase
     {
         public override string GetName() => "Cards";
 
-        protected override CardsState GetInitialState() => new CardsState(ImmutableArray<Card>.Empty, string.Empty, false);
+        protected override CardsState GetInitialState() => new(ImmutableArray<Card>.Empty, string.Empty, false);
     }
 }
