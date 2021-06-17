@@ -44,9 +44,6 @@
     public Guid DeckId { get; set; }
 
     [Parameter]
-    public Guid CardId { get; set; }
-
-    [Parameter]
     public Card Card { get; set; }
 
     [Parameter]
@@ -55,6 +52,8 @@
     [Parameter]
     public EventCallback<Guid> OnDeleteCard { get; set; }
 
+    public Guid CardId { get; set; } = Guid.NewGuid();
+
     public string Front { get; set; } = string.Empty;
 
     public string Back { get; set; } = string.Empty;
@@ -62,14 +61,14 @@
     protected override Task OnParametersSetAsync()
     {
         if (Card != null)
-            (Front, Back) = (Card.Front, Card.Back);
+            (CardId, Front, Back) = (Card.Id, Card.Front, Card.Back);
 
         return base.OnParametersSetAsync();
     }
 
     private async Task SaveCard()
     {
-        await OnSaveCard.InvokeAsync(new Card(Card?.Id == CardId ? Card.Id : Guid.NewGuid(), Front, Back, 1, DeckId));
+        await OnSaveCard.InvokeAsync(new Card(CardId, Front, Back, 1, null, DeckId));
         NavigationManager.NavigateTo($"/decks/{DeckId}");
     }
 

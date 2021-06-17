@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace FlashCards.Store.CardsUseCase
 {
-    public record CardsState(IEnumerable<Card> Cards, string Filter);
-    public record Card(Guid Id, string Front, string Back, int Score, Guid DeckId);
+    public record CardsState(IImmutableList<Card> Cards, string Filter, bool ShowBack);
+
+    public record Card(Guid Id, string Front, string Back, int Score, DateTime? LastStudiedOn, Guid DeckId);
 }

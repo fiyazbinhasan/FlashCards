@@ -1,4 +1,6 @@
-﻿namespace FlashCards.Store.DecksUseCase
+﻿using System.Collections.Immutable;
+
+namespace FlashCards.Store.DecksUseCase
 {
-    public record GetDecksAction(Deck[] Decks);
+    public record GetDecksAction(IImmutableList<Deck> Decks);
 }

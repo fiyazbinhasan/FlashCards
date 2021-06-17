@@ -1,5 +1,5 @@
 ﻿using Fluxor;
-using System;
+using System.Collections.Immutable;
 
 namespace FlashCards.Store.CardsUseCase
 {
@@ -7,6 +7,6 @@ namespace FlashCards.Store.CardsUseCase
     {
         public override string GetName() => "Cards";
 
-        protected override CardsState GetInitialState() => new CardsState(Array.Empty<Card>(), String.Empty);
+        protected override CardsState GetInitialState() => new CardsState(ImmutableArray<Card>.Empty, string.Empty, false);
     }
 }

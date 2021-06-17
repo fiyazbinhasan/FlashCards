@@ -17,7 +17,7 @@
                        Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")">
                 Add Card
             </MudButton>
-            <MudButton Class="ml-2" Variant="Variant.Filled" StartIcon="@Icons.Filled.LocalLibrary" Color="Color.Primary"
+            <MudButton Class="ml-3" Variant="Variant.Filled" StartIcon="@Icons.Filled.LocalLibrary" Color="Color.Primary"
                        Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")">
                 Study Deck
             </MudButton>
@@ -30,37 +30,31 @@
 
         <MudAppBarSpacer />
 
-        <MudElement HtmlTag="div">
-            <MudTextField @bind-Value="@_filterText"
-                          Variant="Variant.Text"
-                          Adornment="Adornment.End"
-                          AdornmentIcon="@Icons.Filled.Search"
-                          DebounceInterval="500"
-                          OnDebounceIntervalElapsed="HandleIntervalElapsed"
-                          AdornmentColor="Color.Inherit"
-                          Style="margin: 0 16px; color:white"
-                          IconSize="Size.Medium"/>
-        </MudElement>
-        
-        <MudIconButton Class="ml-2" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+        <MudTextField @bind-Value="@_filterText"
+                      Variant="Variant.Text"
+                      Adornment="Adornment.End"
+                      AdornmentIcon="@Icons.Filled.Search"
+                      DebounceInterval="500"
+                      OnDebounceIntervalElapsed="HandleIntervalElapsed"
+                      AdornmentColor="Color.Inherit"
+                      IconSize="Size.Medium"
+                      Class="filter-text-field" />
+
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                        Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
     }
     else
     {
         <MudAppBarSpacer />
 
-        <MudIconButton Class="ml-2" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                        Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
     }
-
 </MudAppBar>
 
 @code
 {
     string _filterText;
-
-    [Parameter]
-    public Guid? DeckId { get; set; }
 
     [Inject]
     public IState<DecksState> DecksState { get; set; }

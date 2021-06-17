@@ -1,5 +1,6 @@
 ﻿using Fluxor;
 using System;
+using System.Collections.Immutable;
 
 namespace FlashCards.Store.DecksUseCase
 {
@@ -7,6 +8,6 @@ namespace FlashCards.Store.DecksUseCase
     {
         public override string GetName() => "Decks";
 
-        protected override DecksState GetInitialState() => new DecksState(Array.Empty<Deck>(), false, Guid.Empty);
+        protected override DecksState GetInitialState() => new DecksState(ImmutableArray<Deck>.Empty, false, Guid.Empty);
     }
 }
