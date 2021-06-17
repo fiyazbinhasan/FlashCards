@@ -1,5 +1,8 @@
 # FlashCards
 Learning Blazor By Creating A Flash Cards Application
+
+Blog and Videos Coming Soon....
+
  
  ![download (1)](https://user-images.githubusercontent.com/6568968/122388956-379ad180-cf92-11eb-97b2-142559b71931.png)
 
