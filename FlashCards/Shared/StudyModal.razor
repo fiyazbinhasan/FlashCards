@@ -43,18 +43,18 @@
 
                     <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
                         <div class="d-flex justify-center">
-                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbDown" Color="Color.Error" OnClick="((e) => OnCardStudied(card, Math.Max(card.Score - 2, 1)))">Poorly</MudButton>
-                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbUp" Color="Color.Success" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 1, 2)))">Okay</MudButton>
-                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))">Great</MudButton>
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbDown" Color="Color.Error" OnClick="(e) => OnCardStudied(card, Math.Max(card.Score - 1, 1))">Poorly</MudButton>
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbUp" Color="Color.Success" OnClick="(e) => OnCardStudied(card, card.Score)">Okay</MudButton>
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary" OnClick="(e) => OnCardStudied(card, Math.Min(card.Score + 1, 3))">Great</MudButton>
                         </div>
                     </MudHidden>
 
                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                         <div class="d-flex justify-center">
                             <MudButtonGroup Variant="Variant.Filled" Color="Color.Secondary">
-                                <MudIconButton Icon="@Icons.Material.Filled.ThumbDown" OnClick="((e) => OnCardStudied(card, Math.Max(card.Score - 2, 1)))" />
-                                <MudIconButton Icon="@Icons.Material.Filled.ThumbUp" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 1, 2)))" />
-                                <MudIconButton Icon="@Icons.Material.Filled.Star" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.ThumbDown" OnClick="(e) => OnCardStudied(card, Math.Max(card.Score - 1, 1))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.ThumbUp" OnClick="(e) => OnCardStudied(card, card.Score)" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Star" OnClick="(e) => OnCardStudied(card, Math.Min(card.Score + 1, 3))" />
                             </MudButtonGroup>
                         </div>
                     </MudHidden>
@@ -101,7 +101,7 @@
 
     private void OnCardStudied(Card card, int score)
     {
-        Dispatcher.Dispatch(new UpdateCardAction(card with { LastStudiedOn = DateTime.UtcNow.Date, Score = score }));
+        Dispatcher.Dispatch(new UpdateCardAction(card with { LastStudiedOn = DateTime.UtcNow, Score = score }));
         Dispatcher.Dispatch(new SetShowBackAction(false));
     }
 }
