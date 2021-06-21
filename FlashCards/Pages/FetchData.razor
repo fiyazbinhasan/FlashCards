@@ -3,38 +3,29 @@
 @using FlashCards.Data
 @inject WeatherForecastService ForecastService
 
-<h1>Weather forecast</h1>
+<MudGrid Class="mt-4">
+    <MudItem xs="12" sm="12" md="12">
+        <h1>Weather forecast</h1>
+        <p>This component demonstrates fetching data from a service.</p>
+    </MudItem>
+    <MudItem xs="12" sm="12" md="12">
+        <MudTable Items="@forecasts" Hover="true" Breakpoint="Breakpoint.Md" Loading="@(forecasts == null)" LoadingProgressColor="Color.Info">
+            <HeaderContent>
+                <MudTh>Date</MudTh>
+                <MudTh>Temp. (C)</MudTh>
+                <MudTh>Temp. (F)</MudTh>
+                <MudTh>Summary</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Date">@context.Date</MudTd>
+                <MudTd DataLabel="TempC">@context.TemperatureC</MudTd>
+                <MudTd DataLabel="TempF">@context.TemperatureF</MudTd>
+                <MudTd DataLabel="Summary">@context.Summary</MudTd>
+            </RowTemplate>
+        </MudTable>
+    </MudItem>
+</MudGrid>
 
-<p>This component demonstrates fetching data from a service.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
 
 @code {
     private WeatherForecast[] forecasts;

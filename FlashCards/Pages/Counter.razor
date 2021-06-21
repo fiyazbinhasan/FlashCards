@@ -1,10 +1,14 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="IncrementCount">Click me</MudButton>
+<MudGrid Class="mt-4">
+    <MudItem xs="12" sm="12" md="12">
+        <h1>Counter</h1>
+        <p>Current count: @currentCount</p>
+    </MudItem>
+    <MudItem xs="12" sm="12" md="12">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="IncrementCount">Click me</MudButton>
+    </MudItem>
+</MudGrid>
 
 @code {
     private int currentCount = 0;
