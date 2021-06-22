@@ -1,6 +1,6 @@
-﻿.no-cards,
-.modal-content .front div:first-child,
-.modal-content .back div:first-child {
+﻿.modal-content .front div:first-child,
+.modal-content .back div:first-child,
+.modal-content .no-cards div:first-child {
     display: flex;
     align-items: center;
     justify-content: center;

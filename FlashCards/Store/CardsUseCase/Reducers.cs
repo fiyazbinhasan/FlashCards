@@ -19,7 +19,7 @@ namespace FlashCards.Store.CardsUseCase
             state with { Cards = state.Cards.Where(c => c.Id != action.CardId).ToImmutableList() };
 
         [ReducerMethod]
-        public static CardsState ReduceEditCardAction(CardsState state, EditCardAction action)
+        public static CardsState ReduceEditCardAction(CardsState state, UpdateCardAction action)
         {
             var card = state.Cards.FirstOrDefault(c => c.Id.Equals(action.Card.Id));
 
@@ -27,7 +27,13 @@ namespace FlashCards.Store.CardsUseCase
                 ? state with
                 {
                     Cards = state.Cards.Replace(card,
-                        card with { Front = action.Card.Front, Back = action.Card.Back })
+                        card with
+                        {
+                            Front = action.Card.Front, 
+                            Back = action.Card.Back,
+                            LastStudiedOn = action.Card.LastStudiedOn, 
+                            Score = action.Card.Score
+                        })
                 }
                 : state;
         }
@@ -37,7 +43,7 @@ namespace FlashCards.Store.CardsUseCase
             state with { Filter = action.Query };
 
         [ReducerMethod]
-        public static CardsState ReduceShowCardBackAction(CardsState state, ShowCardBackAction action) =>
+        public static CardsState ReduceShowCardBackAction(CardsState state, SetShowBackAction action) =>
             state with { ShowBack = action.ShowBack };
     }
 }

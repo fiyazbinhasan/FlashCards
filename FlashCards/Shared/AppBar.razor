@@ -56,9 +56,6 @@
 {
     string _filterText;
 
-    [Parameter]
-    public Guid? DeckId { get; set; }
-
     [Inject]
     public IState<DecksState> DecksState { get; set; }
 
