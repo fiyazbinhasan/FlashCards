@@ -29,9 +29,9 @@ namespace FlashCards.Store.CardsUseCase
                     Cards = state.Cards.Replace(card,
                         card with
                         {
-                            Front = action.Card.Front, 
+                            Front = action.Card.Front,
                             Back = action.Card.Back,
-                            LastStudiedOn = action.Card.LastStudiedOn, 
+                            LastStudiedOn = action.Card.LastStudiedOn,
                             Score = action.Card.Score
                         })
                 }

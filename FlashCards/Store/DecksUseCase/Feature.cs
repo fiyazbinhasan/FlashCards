@@ -8,6 +8,6 @@ namespace FlashCards.Store.DecksUseCase
     {
         public override string GetName() => "Decks";
 
-        protected override DecksState GetInitialState() => new DecksState(ImmutableArray<Deck>.Empty, false, Guid.Empty);
+        protected override DecksState GetInitialState() => new(ImmutableArray<Deck>.Empty, false, Guid.Empty);
     }
 }

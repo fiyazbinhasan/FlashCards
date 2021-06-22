@@ -17,21 +17,47 @@
                     <div>
                         <MudText Typo="Typo.h4">@card.Front</MudText>
                     </div>
-                    <div class="d-flex justify-space-between">
-                        <MudIconButton Icon="@Icons.Material.Filled.Pause" Variant="Variant.Filled" Color="Color.Info" OnClick="Close" />
-                        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Flip" Color="Color.Primary" OnClick="Flip">Flip</MudButton>
-                    </div>
+
+                    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                        <div class="d-flex justify-space-between">
+                            <MudIconButton Icon="@Icons.Material.Filled.Pause" Variant="Variant.Filled" Color="Color.Info" OnClick="Close" />
+                            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Flip" Color="Color.Primary" OnClick="Flip">Flip</MudButton>
+                        </div>
+                    </MudHidden>
+
+                    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                        <div class="d-flex justify-center">
+                            <MudButtonGroup Variant="Variant.Filled" Color="Color.Secondary">
+                                <MudIconButton Icon="@Icons.Material.Filled.Pause" OnClick="Close" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Flip" OnClick="Flip" />
+                            </MudButtonGroup>
+                        </div>
+                    </MudHidden>
                 </div>
+
                 <div class="@((CardsState.Value.ShowBack ? "back" : "back hide"))">
                     <div>
-                        <MudText Typo="Typo.body1" Align="Align.Center">@card.Back</MudText>
+                        <MudText Typo="Typo.h4" Align="Align.Center">@card.Back</MudText>
                     </div>
                     <MudText Typo="Typo.h6" Class="ma-6" Align="Align.Center">How did you do?</MudText>
-                    <div class="d-flex justify-center">
-                        <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbDown" Color="Color.Error" OnClick="((e) => OnCardStudied(card, Math.Max(card.Score - 2, 1)))">Poorly</MudButton>
-                        <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbUp" Color="Color.Tertiary" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 1, 2)))">Okay</MudButton>
-                        <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))">Great</MudButton>
-                    </div>
+
+                    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                        <div class="d-flex justify-center">
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbDown" Color="Color.Error" OnClick="((e) => OnCardStudied(card, Math.Max(card.Score - 2, 1)))">Poorly</MudButton>
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ThumbUp" Color="Color.Success" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 1, 2)))">Okay</MudButton>
+                            <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))">Great</MudButton>
+                        </div>
+                    </MudHidden>
+                    
+                    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                        <div class="d-flex justify-center">
+                            <MudButtonGroup Variant="Variant.Filled" Color="Color.Secondary">
+                                <MudIconButton Icon="@Icons.Material.Filled.ThumbDown" OnClick="((e) => OnCardStudied(card, Math.Max(card.Score - 2, 1)))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.ThumbUp" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 1, 2)))" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Star" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))" />
+                            </MudButtonGroup>
+                        </div>
+                    </MudHidden>
                 </div>
             }
             else
