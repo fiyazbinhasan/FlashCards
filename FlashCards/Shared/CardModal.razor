@@ -5,7 +5,7 @@
         <MudText Typo="Typo.h6">@(OnDeleteCard.HasDelegate ? "Edit Card" : "Add Card")</MudText>
         <MudTextField Class="mt-8 mb-8" Label="Front" Variant="Variant.Outlined" @bind-Value="@Front" Lines="4" />
         <MudTextField Class="mb-8" Label="Back" Variant="Variant.Outlined" @bind-Value="@Back" Lines="4" />
-        
+
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
             <div class="d-flex justify-space-between">
                 <div>

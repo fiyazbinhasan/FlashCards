@@ -48,7 +48,7 @@
                             <MudButton Class="mx-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Star" Color="Color.Primary" OnClick="((e) => OnCardStudied(card, Math.Min(card.Score + 2, 3)))">Great</MudButton>
                         </div>
                     </MudHidden>
-                    
+
                     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                         <div class="d-flex justify-center">
                             <MudButtonGroup Variant="Variant.Filled" Color="Color.Secondary">
@@ -101,7 +101,7 @@
 
     private void OnCardStudied(Card card, int score)
     {
-        Dispatcher.Dispatch(new UpdateCardAction(card with { LastStudiedOn = DateTime.UtcNow.Date, Score = score}));
+        Dispatcher.Dispatch(new UpdateCardAction(card with { LastStudiedOn = DateTime.UtcNow.Date, Score = score }));
         Dispatcher.Dispatch(new SetShowBackAction(false));
     }
 }
