@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FlashCards
 {
-    public partial class App : IDisposable
+    public partial class App : ComponentBase, IDisposable
     {
         [Inject]
         private ILocalStorageService LocalStorage { get; set; }
