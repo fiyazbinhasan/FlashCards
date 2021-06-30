@@ -1,9 +1,9 @@
 ﻿@page "/counter"
 
-<MudGrid Class="mt-4">
+<MudGrid Class="mt-2">
     <MudItem xs="12" sm="12" md="12">
-        <h1>Counter</h1>
-        <p>Current count: @currentCount</p>
+        <MudText Typo="Typo.h3">Counter</MudText>
+        <MudText Typo="Typo.subtitle1">Current count: @currentCount</MudText>
     </MudItem>
     <MudItem xs="12" sm="12" md="12">
         <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="IncrementCount">Click me</MudButton>
