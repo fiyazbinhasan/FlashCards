@@ -12,9 +12,9 @@ Learning Blazor By Creating A Flash Cards Application
 
 | Branch      | Title |
 | ----------- | ----------- |
-| [Part I](https://github.com/fiyazbinhasan/FlashCards/tree/Part-I-Adding-Mud-Blazor) | Adding MudBlazor to a Blazor Server App |
+| [Part I](https://github.com/fiyazbinhasan/FlashCards/tree/Part-I-Adding-Mud-Blazor) | [Adding MudBlazor to a Blazor Server App](https://fiyazhasan.me/blazor-flashcards-adding-mudblazor/) |
 | [Part II](https://github.com/fiyazbinhasan/FlashCards/tree/Part-II-Basic-App-Layout) | Creating a Basic App Layout |
-| [Part III](https://github.com/fiyazbinhasan/FlashCards/tree/Part-III-Introducing-Fluxor) | Introducing Fluxor for State Management |
+| [Part III](https://github.com/fiyazbinhasan/FlashCards/tree/Part-III-Introducing-Fluxor) | [Introducing Fluxor for State Management](https://fiyazhasan.me/state-management-with-fluxor/) |
 | [Part IV](https://github.com/fiyazbinhasan/FlashCards/tree/Part-IV-Immutability-With-C-Sharp-Records) | Immutibility with C# Records |
 | [Part V](https://github.com/fiyazbinhasan/FlashCards/tree/Part-V-Adding-State-For-Managing-Cards) | Adding State for Managing Cards |
 | [Part VI](https://github.com/fiyazbinhasan/FlashCards/tree/Part-VI-Adding-A-Card-Component) | Adding a Card Component |
