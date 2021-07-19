@@ -2,6 +2,10 @@
 
 Learning Blazor By Creating A Flash Cards Application
 
+# Live Demo
+
+https://blazorflashcards.azurewebsites.net/
+
 # Blogs
 
 https://www.fiyazhasan.me/tag/blazor
