@@ -10,10 +10,10 @@
     public Guid DeckId { get; set; }
 
     [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    public IDispatcher? Dispatcher { get; set; }
 
-    public void SaveCard(Card card)
+    private void SaveCard(Card card)
     {
-        Dispatcher.Dispatch(new AddCardAction(card));
+        Dispatcher?.Dispatch(new AddCardAction(card));
     }
 }

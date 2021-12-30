@@ -38,13 +38,13 @@
 @code {
 
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public NavigationManager? NavigationManager { get; set; }
 
     [Parameter]
     public Guid DeckId { get; set; }
 
     [Parameter]
-    public Card Card { get; set; }
+    public Card? Card { get; set; }
 
     [Parameter]
     public EventCallback<Card> OnSaveCard { get; set; }
@@ -52,11 +52,11 @@
     [Parameter]
     public EventCallback<Guid> OnDeleteCard { get; set; }
 
-    public Guid CardId { get; set; } = Guid.NewGuid();
+    private Guid CardId { get; set; } = Guid.NewGuid();
 
-    public string Front { get; set; } = string.Empty;
+    private string Front { get; set; } = string.Empty;
 
-    public string Back { get; set; } = string.Empty;
+    private string Back { get; set; } = string.Empty;
 
     protected override Task OnParametersSetAsync()
     {
@@ -69,17 +69,17 @@
     private async Task SaveCard()
     {
         await OnSaveCard.InvokeAsync(new Card(CardId, Front, Back, 1, null, DeckId));
-        NavigationManager.NavigateTo($"/decks/{DeckId}");
+        NavigationManager?.NavigateTo($"/decks/{DeckId}");
     }
 
     private async Task DeleteCard()
     {
         await OnDeleteCard.InvokeAsync(CardId);
-        NavigationManager.NavigateTo($"/decks/{DeckId}");
+        NavigationManager?.NavigateTo($"/decks/{DeckId}");
     }
 
     void Cancel()
     {
-        NavigationManager.NavigateTo($"/decks/{DeckId}");
+        NavigationManager?.NavigateTo($"/decks/{DeckId}");
     }
 }

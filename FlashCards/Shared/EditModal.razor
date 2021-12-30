@@ -14,15 +14,15 @@
     public Guid CardId { get; set; }
 
     [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    public IDispatcher? Dispatcher { get; set; }
 
-    public void DeleteCard(Guid cardId)
+    private void DeleteCard(Guid cardId)
     {
-        Dispatcher.Dispatch(new DeleteCardAction(cardId));
+        Dispatcher?.Dispatch(new DeleteCardAction(cardId));
     }
 
-    public void SaveCard(Card card)
+    private void SaveCard(Card card)
     {
-        Dispatcher.Dispatch(new UpdateCardAction(card));
+        Dispatcher?.Dispatch(new UpdateCardAction(card));
     }
 }

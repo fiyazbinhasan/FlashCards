@@ -1,11 +1,11 @@
 ﻿@using FlashCards.Store.CardsUseCase
 @inject NavigationManager _navigationManager
 
-<MudPaper Elevation="2" Class="d-flex flex-column justify-center align-center pa-3" @onclick="@(e => _navigationManager.NavigateTo($"/decks/{Card.DeckId}/edit/{Card.Id}"))" Style="cursor: pointer; height: 100px;">
-    <MudText Typo="Typo.h5">@Card.Front</MudText>
+<MudPaper Elevation="2" Class="d-flex flex-column justify-center align-center pa-3" @onclick="@(_ => { if (Card != null) {_navigationManager.NavigateTo($"/decks/{Card.DeckId}/edit/{Card.Id}"); } })" Style="cursor: pointer; height: 100px;">
+    <MudText Typo="Typo.h5">@Card?.Front</MudText>
 </MudPaper>
 
 @code {
     [Parameter]
-    public Card Card { get; set; }
+    public Card? Card { get; set; }
 }

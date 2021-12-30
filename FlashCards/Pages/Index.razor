@@ -34,15 +34,15 @@ else
 @code
 {
     [Parameter] public Guid DeckId { get; set; }
-    [Parameter] public string Action { get; set; }
+    [Parameter] public string? Action { get; set; }
     [Parameter] public Guid CardId { get; set; }
 
     [Inject]
-    private IDispatcher Dispatcher { get; set; }
+    private IDispatcher? Dispatcher { get; set; }
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        Dispatcher.Dispatch(new SelectDeckAction(DeckId));
+        Dispatcher?.Dispatch(new SelectDeckAction(DeckId));
 
         return base.OnAfterRenderAsync(firstRender);
     }

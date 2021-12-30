@@ -10,27 +10,27 @@
         <MudText Typo="Typo.h5">Flash Cards</MudText>
     </MudHidden>
 
-    @if (DecksState.Value.SelectedDeckId != Guid.Empty)
+    @if (DecksState?.Value.SelectedDeckId != Guid.Empty)
     {
         <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
             <MudButton Class="ml-8" Variant="Variant.Filled" StartIcon="@Icons.Filled.NoteAdd" Color="Color.Primary"
-                       Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")">
+                       Link="@($"/decks/{DecksState?.Value.SelectedDeckId}/new")">
                 Add Card
             </MudButton>
             <MudButton Class="ml-3" Variant="Variant.Filled" StartIcon="@Icons.Filled.LocalLibrary" Color="Color.Primary"
-                       Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")">
+                       Link="@($"/decks/{DecksState?.Value.SelectedDeckId}/study")">
                 Study Deck
             </MudButton>
         </MudHidden>
 
         <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
             <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary">
-                <MudIconButton Icon="@Icons.Outlined.NoteAdd" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/new")" />
-                <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Link="@($"/decks/{DecksState.Value.SelectedDeckId}/study")" />
+                <MudIconButton Icon="@Icons.Outlined.NoteAdd" Link="@($"/decks/{DecksState?.Value.SelectedDeckId}/new")" />
+                <MudIconButton Icon="@Icons.Outlined.LocalLibrary" Link="@($"/decks/{DecksState?.Value.SelectedDeckId}/study")" />
             </MudButtonGroup>
         </MudHidden>
 
-        <MudAppBarSpacer />
+        <MudSpacer />
 
         <MudTextField @bind-Value="@_filterText"
                       Variant="Variant.Text"
@@ -47,7 +47,7 @@
     }
     else
     {
-        <MudAppBarSpacer />
+        <MudSpacer />
 
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"
                        Link="https://github.com/fiyazbinhasan/FlashCards" Target="_blank" />
@@ -56,13 +56,13 @@
 
 @code
 {
-    string _filterText;
+    string _filterText = "";
 
     [Inject]
-    public IState<DecksState> DecksState { get; set; }
+    public IState<DecksState>? DecksState { get; set; }
 
     [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    public IDispatcher? Dispatcher { get; set; }
 
     [Parameter]
     public EventCallback OnMenuToggle { get; set; }
@@ -74,6 +74,6 @@
 
     void HandleIntervalElapsed(string filterText)
     {
-        Dispatcher.Dispatch(new FilterCardAction(filterText));
+        Dispatcher?.Dispatch(new FilterCardAction(filterText));
     }
 }
